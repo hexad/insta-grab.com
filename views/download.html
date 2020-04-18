@@ -1,0 +1,113 @@
+<html>
+
+	<head>
+		<title>Download instagram photo video and profile picture</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    
+    <style type="text/css">
+      ul {
+        display: table;
+        margin: 0 auto;
+      }
+    </style>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="javascripts/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		
+    <div> 
+      <h1 class= "text-center">
+        Here are your Instagram photos, videos, or profile picture! Grab em!
+      </h1>
+    </div>
+		
+    <br>
+
+		<div id = 'main' class= "text-center">
+		</div>
+		
+    <br>
+
+		<div> 
+      <h1 class= "text-center">
+        Link back to the <a href="/index">Index Page</a>
+      </h1>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div> 
+      <h2 class= "text-center">
+        If something is not working properly, please make sure that you are entering the correct link, in the correct form.
+      </h1>
+    </div>
+
+    <ul>
+       <li>If what you want is the profile picture of a user, make sure you are using the URL of the user's profile. For example - https://www.instagram.com/cristiano</li>
+       <li>If what you want is a picture, make sure you are using the URL of the instagram post that contains the picture. For example - https://www.instagram.com/p/B3BrTEqgd00/</li>
+       <li>If what you want is a video, make sure you are using the URL of the instagram post that contains the picture. For example - https://www.instagram.com/p/B1tj-WZAIMN/</li>
+       <li>If what you want is media from a multi-post, make sure you are using the URL of the instagram post that contains the mdeia you want. For example - https://www.instagram.com/p/B29oLDXg2k3/</li>
+    </ul>
+
+
+		<script>
+  			//var data_from_user = <%= data %>; // Makes res.render() parameter accesible in js, EJS style. data_from_user is what server returns as the media URL. I HAD A PROBLEM WITH MULTI-POST, I HAD TO MAKE IT AN OBJECT
+  			//in order to use it in plain HTML use: <h1><%= data %></h1>
+        var data_from_user = <%- JSON.stringify(data) %>; // use this instead
+  			
+        /*
+        //small client script to figure out if my multi variables are object or array. They are both
+        if (typeof(data_from_user) === 'object') {console.log("ITS AN OBJECT");}
+  			else {console.log("ITS NOT AN OBJECT");}
+  			if ( Array.isArray(data_from_user) ) {console.log("ITS AN ARRAY");}
+  			else {console.log("ITS NOT AN ARRAY");}
+  			*/
+
+        //If data_from_user is not an array. Everything except multipost
+        if (!Array.isArray(data_from_user)) {
+    			var btn=document.createElement("button");
+    			btn.className = "btn"; //Bootstrap class
+    			btn.className += " btn-primary"; //Bootstrap class
+    			btn.className += " btn-md"; //Bootstrap class
+    			btn.id ='Download';
+    		 	btn.innerText = "Click to Download";
+    			btn.onclick = function() {
+      			window.open(data_from_user, '_blank');
+  			   };
+    			document.getElementById("main").appendChild(btn);
+          //document.getElementById("main").innerHTML = Array.isArray(data_from_user); //TEST returns true or false - RENDERS IT
+        }
+        //else if data_from_user is an array. Then we have multipost, so multiple download buttons
+  		  else {
+
+          data_from_user.forEach(function (item) {
+
+            var btn=document.createElement("button");
+            btn.className = "btn"; //Bootstrap class
+            btn.className += " btn-primary"; //Bootstrap class
+            btn.className += " btn-md"; //Bootstrap class
+            //btn.id ='Download';
+            btn.innerText = "Click to Download";
+            btn.onclick = function() {
+              window.open(item, '_blank');
+             };
+            document.getElementById("main").appendChild(btn);
+          });
+        }
+  	</script>
+		 
+	</body>
+
+
+</html>

@@ -1,0 +1,68 @@
+<!-- index -->
+<!doctype html>
+<html>
+	<head>
+		<title>Oops...</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<style>
+			body 		{ padding-top:80px; word-wrap:break-word; }
+			 .msg {
+                  text-align: center;
+             }
+             ul {
+       			 	display: table;
+        			margin: 0 auto;
+      			}
+		</style>
+  </head>
+
+	<body>
+		<div class="container">
+
+			<div class="page-header text-center">
+				<h1><span class="fa fa-anchor"></span> Insta Ripper</h1>
+			</div>
+
+			<div class="msg">
+				<h1 class= "text-center">There was an error. Please go back to the <a href="/index">Index Page</a> </h1>
+			</div>
+
+		</div>
+
+		<br>
+    <br>
+    <br>
+    <br>
+
+    <div> 
+      <h2 class= "text-center">
+        If something is not working properly, please make sure that you are entering the correct link, in the correct form.
+      </h1>
+    </div>
+
+    <ul>
+       <li>If what you want is the profile picture of a user, make sure you are using the URL of the user's profile. For example - https://www.instagram.com/cristiano</li>
+       <li>If what you want is a picture, make sure you are using the URL of the instagram post that contains the picture. For example - https://www.instagram.com/p/B3BrTEqgd00/</li>
+       <li>If what you want is a video, make sure you are using the URL of the instagram post that contains the picture. For example - https://www.instagram.com/p/B1tj-WZAIMN/</li>
+       <li>If what you want is media from a multi-post, make sure you are using the URL of the instagram post that contains the mdeia you want. For example - https://www.instagram.com/p/B29oLDXg2k3/</li>
+    </ul>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	</body>
+
+  <script>
+    var checking_for_user = <%- typeof(overwrite) != "undefined" && JSON.stringify(overwrite) %> ;
+    if (checking_for_user) {
+      document.querySelector('.msg .text-center').innerHTML='User does not exist! Please go back to the <a href="/index">Index Page</a>';
+    }
+  </script>  
+</html>
+
+
